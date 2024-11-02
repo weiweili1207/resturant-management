@@ -1,7 +1,7 @@
 package com.dine.exception;
 
 /**
- * 业务异常
+ * base exception
  */
 public class BaseException extends RuntimeException {
 

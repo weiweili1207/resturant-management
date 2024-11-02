@@ -1,7 +1,7 @@
 package com.dine.exception;
 
 /**
- * 账号不存在异常
+ * account not found exception
  */
 public class AccountNotFoundException extends BaseException {
 

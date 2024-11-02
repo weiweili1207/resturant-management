@@ -1,7 +1,7 @@
 package com.dine.exception;
 
 /**
- * 账号被锁定异常
+ * account locked exception
  */
 public class AccountLockedException extends BaseException {
 

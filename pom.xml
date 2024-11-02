@@ -18,7 +18,7 @@
         <module>dine-master-server</module>
     </modules>
     <properties>
-        <java.version>21</java.version>
+        <java.version>11</java.version>
         <mybatis.spring>2.2.0</mybatis.spring>
         <lombok>1.18.30</lombok>
         <fastjson>1.2.76</fastjson>
