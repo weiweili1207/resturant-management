@@ -1,7 +1,7 @@
 package com.dine.constant;
 
 /**
- * 密码常量
+ * constant password
  */
 public class PasswordConstant {
 
