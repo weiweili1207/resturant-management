@@ -10,7 +10,7 @@ public class CategoryDTO implements Serializable {
     //primary key
     private Long id;
 
-    //类型 1 菜品分类 2 套餐分类
+    //type 1.dish category 2. combo category
     private Integer type;
 
     //category name
