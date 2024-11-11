@@ -1,6 +1,8 @@
 package com.dine.mapper;
 
+import com.dine.dto.CategoryPageQueryDTO;
 import com.dine.entity.Category;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,4 +17,11 @@ public interface CategoryMapper {
             + "VALUES " +
             "(#{type}, #{name}, #{sort}, #{status}, #{createTime}, #{updateTime}, #{createUser}, #{createUser})")
     void addCategory(Category category);
+
+    /**
+     * category pagination
+     * @param categoryPageQueryDTO
+     * @return
+     */
+    Page<Category> pageQuery(CategoryPageQueryDTO categoryPageQueryDTO);
 }

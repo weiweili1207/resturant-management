@@ -1,16 +1,15 @@
 package com.dine.controller.admin;
 
 import com.dine.dto.CategoryDTO;
+import com.dine.dto.CategoryPageQueryDTO;
+import com.dine.result.PageResult;
 import com.dine.result.Result;
 import com.dine.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin/category")
@@ -32,5 +31,18 @@ public class CategoryController {
         categoryService.addCategory(categoryDTO);
         return Result.success();
     }
-    
+
+    /**
+     * category pagination
+     * @param categoryPageQueryDTO
+     * @return
+     */
+    @GetMapping("/page")
+    @ApiOperation("category pagination")
+    public Result<PageResult> pageQuery(CategoryPageQueryDTO categoryPageQueryDTO) {
+        log.info("category pagination, parameter {}", categoryPageQueryDTO);
+        PageResult pageResult = categoryService.pageQuery(categoryPageQueryDTO);
+        return Result.success(pageResult);
+    }
+
 }
