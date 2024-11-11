@@ -91,9 +91,24 @@ public class EmployeeController {
      */
     @GetMapping("/page")
     @ApiOperation("Employee pagination query")
-    public Result<PageResult> pagination(EmployeePageQueryDTO employeePageQueryDTO) {
+    public Result<PageResult> pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
         log.info("Employee pagination, parameter: {}", employeePageQueryDTO);
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
     }
+
+    /**
+     * enable or disable employee account
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("Enable or disable employee account")
+    public Result enableOrDisable(@PathVariable Integer status, Long id) {
+        log.info("Enable or disable employee account: {},{}", status, id);
+        employeeService.enaleOrDisable(status, id);
+        return Result.success();
+    }
 }
+

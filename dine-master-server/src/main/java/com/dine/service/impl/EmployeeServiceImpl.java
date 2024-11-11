@@ -107,4 +107,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new PageResult(totalPage, records);
     }
 
+    /**
+     * enable or disable employee account
+     * @param status
+     * @param id
+     */
+    @Override
+    public void enaleOrDisable(Integer status, Long id) {
+        Employee employee = Employee.builder()
+                .status(status)
+                .id(id)
+                .build();
+        employeeMapper.update(employee);
+    }
+
 }

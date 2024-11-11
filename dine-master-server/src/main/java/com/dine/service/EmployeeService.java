@@ -25,4 +25,6 @@ public interface EmployeeService {
      * @return
      */
     PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    void enaleOrDisable(Integer status, Long id);
 }
