@@ -3,6 +3,7 @@ package com.dine.mapper;
 import com.dine.dto.CategoryPageQueryDTO;
 import com.dine.entity.Category;
 import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -24,4 +25,17 @@ public interface CategoryMapper {
      * @return
      */
     Page<Category> pageQuery(CategoryPageQueryDTO categoryPageQueryDTO);
+
+    /**
+     * delete category by id
+     * @param id
+     */
+    @Delete("DELETE FROM category WHERE id = #{id}")
+    void deleteCategoryById(Long id);
+
+    /**
+     * update category information
+     * @param category
+     */
+    void update(Category category);
 }

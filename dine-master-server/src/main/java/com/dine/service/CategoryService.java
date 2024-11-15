@@ -18,4 +18,16 @@ public interface CategoryService {
      * @return
      */
     PageResult pageQuery(CategoryPageQueryDTO categoryPageQueryDTO);
+
+    /**
+     * delete category by id
+     * @param id
+     */
+    void deleteCategoryById(Long id);
+
+    /**
+     * update category info
+     * @param categoryDTO
+     */
+    void updateCategoryInfo(CategoryDTO categoryDTO);
 }

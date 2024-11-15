@@ -45,4 +45,28 @@ public class CategoryController {
         return Result.success(pageResult);
     }
 
+    /**
+     * delete category by id
+     * @param id
+     * @return
+     */
+    @DeleteMapping
+    @ApiOperation("delete category")
+    public Result<String> deleteCategoryById(Long id)  {
+        log.info("delete category: {}", id);
+        categoryService.deleteCategoryById(id);
+        return Result.success();
+    }
+
+    /**
+     * update category information
+     * @param categoryDTO
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("update category information")
+    public Result updateCategoryInfo(@RequestBody CategoryDTO categoryDTO) {
+        categoryService.updateCategoryInfo(categoryDTO);
+        return  Result.success();
+    }
 }
