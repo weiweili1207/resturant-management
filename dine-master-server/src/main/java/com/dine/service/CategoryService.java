@@ -30,4 +30,11 @@ public interface CategoryService {
      * @param categoryDTO
      */
     void updateCategoryInfo(CategoryDTO categoryDTO);
+
+    /**
+     * enable or disable category
+     * @param status
+     * @param id
+     */
+    void enableOrDisable(Integer status, Long id);
 }

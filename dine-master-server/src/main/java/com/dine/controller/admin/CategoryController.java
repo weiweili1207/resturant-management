@@ -69,4 +69,11 @@ public class CategoryController {
         categoryService.updateCategoryInfo(categoryDTO);
         return  Result.success();
     }
+
+    @PostMapping("/status/{status}")
+    @ApiOperation("enable or disable category")
+    public Result enableOrDisable(@PathVariable("status") Integer status, Long id) {
+        categoryService.enableOrDisable(status, id);
+        return Result.success();
+    }
 }
