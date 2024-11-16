@@ -2,6 +2,7 @@ package com.dine.controller.admin;
 
 import com.dine.dto.CategoryDTO;
 import com.dine.dto.CategoryPageQueryDTO;
+import com.dine.entity.Category;
 import com.dine.result.PageResult;
 import com.dine.result.Result;
 import com.dine.service.CategoryService;
@@ -10,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin/category")
@@ -70,10 +72,28 @@ public class CategoryController {
         return  Result.success();
     }
 
+    /**
+     * enable or disable category
+     * @param status
+     * @param id
+     * @return
+     */
     @PostMapping("/status/{status}")
     @ApiOperation("enable or disable category")
     public Result enableOrDisable(@PathVariable("status") Integer status, Long id) {
         categoryService.enableOrDisable(status, id);
         return Result.success();
+    }
+
+    /**
+     * get category by type
+     * @param type
+     * @return
+     */
+    @GetMapping("/list")
+    @ApiOperation(("get category by type"))
+    public Result<List<Category>> getCategoryByType(Integer type) {
+        List<Category> categoryList = categoryService.getCategoryByType(type);
+        return Result.success(categoryList);
     }
 }

@@ -2,7 +2,10 @@ package com.dine.service;
 
 import com.dine.dto.CategoryDTO;
 import com.dine.dto.CategoryPageQueryDTO;
+import com.dine.entity.Category;
 import com.dine.result.PageResult;
+
+import java.util.List;
 
 public interface CategoryService {
 
@@ -37,4 +40,11 @@ public interface CategoryService {
      * @param id
      */
     void enableOrDisable(Integer status, Long id);
+
+    /**
+     * get category by type
+     * @param type
+     * @return
+     */
+    List<Category> getCategoryByType(Integer type);
 }

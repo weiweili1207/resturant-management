@@ -92,4 +92,14 @@ public class CategoryServiceImpl implements CategoryService {
                 .build();
         categoryMapper.update(category);
     }
+
+    /**
+     * get category by type
+     * @param type
+     * @return
+     */
+    @Override
+    public List<Category> getCategoryByType(Integer type) {
+        return categoryMapper.getCategoryByType(type);
+    }
 }

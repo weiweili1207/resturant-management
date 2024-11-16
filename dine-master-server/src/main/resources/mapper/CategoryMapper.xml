@@ -15,6 +15,15 @@
         ORDER BY sort ASC, create_time DESC
     </select>
 
+    <select id="getCategoryByType" resultType="com.dine.entity.Category">
+        SELECT * FROM sky_take_out.category
+        WHERE status = 1
+        <if test="type != null">
+            AND TYPE = #{type}
+        </if>
+        ORDER BY sort ASC, create_time DESC
+    </select>
+
     <update id="update" parameterType="com.dine.entity.Category">
         UPDATE sky_take_out.category
         <set>
