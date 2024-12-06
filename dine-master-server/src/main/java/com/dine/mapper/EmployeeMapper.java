@@ -1,7 +1,9 @@
 package com.dine.mapper;
 
+import com.dine.annotation.AutoFill;
 import com.dine.dto.EmployeePageQueryDTO;
 import com.dine.entity.Employee;
+import com.dine.enumeration.OperationType;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,6 +25,7 @@ public interface EmployeeMapper {
     @Insert("INSERT INTO employee (name, username, password, phone, gender, id_number, create_time, update_time, create_user, update_user, status)"
             + "VALUES " +
             "(#{name}, #{username}, #{password}, #{phone}, #{gender}, #{idNumber}, #{createTime}, #{updateTime}, #{createUser}, #{updateUser}, #{status})")
+    @AutoFill(value = OperationType.INSERT)
     void insertEmployee(Employee employee);
 
     /**
@@ -36,6 +39,7 @@ public interface EmployeeMapper {
      * update property by using key
      * @param employee
      */
+    @AutoFill(value = OperationType.UPDATE)
     void update(Employee employee);
 
     /**
