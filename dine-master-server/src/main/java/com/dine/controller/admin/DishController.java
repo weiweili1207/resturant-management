@@ -31,5 +31,6 @@ public class DishController {
         dishService.addDish(dishDTO);
         return Result.success();
     }
+
     
 }
