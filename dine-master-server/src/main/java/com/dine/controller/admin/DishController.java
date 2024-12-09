@@ -5,6 +5,7 @@ import com.dine.dto.DishPageQueryDTO;
 import com.dine.result.PageResult;
 import com.dine.service.DishService;
 import com.dine.vo.DishVO;
+import com.wechat.pay.contrib.apache.httpclient.util.RsaCryptoUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -57,5 +58,13 @@ public class DishController {
         log.info("get dish by id: {}", id);
         DishVO dishVO = dishService.getDishById(id);
         return Result.success(dishVO);
+    }
+
+    @PutMapping
+    @ApiOperation("update dish")
+    public Result update(@RequestBody DishDTO dishDTO) {
+        log.info("Starting to update dish: {}", dishDTO);
+        dishService.updateWithFlavor(dishDTO);
+        return Result.success();
     }
 }
