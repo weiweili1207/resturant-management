@@ -1,6 +1,8 @@
 package com.dine.controller.admin;
 
 import com.dine.dto.DishDTO;
+import com.dine.dto.DishPageQueryDTO;
+import com.dine.result.PageResult;
 import com.dine.service.DishService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import com.dine.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 /**
  * dish management
  */
@@ -32,5 +34,19 @@ public class DishController {
         return Result.success();
     }
 
-    
+    @GetMapping("/page")
+    @ApiOperation("dish pagination")
+    public Result<PageResult> page(DishPageQueryDTO dishPageQueryDTO){
+        log.info("dish page query：{}",dishPageQueryDTO);
+        PageResult pageResult = dishService.pageQuery(dishPageQueryDTO);
+        return Result.success(pageResult);
+    }
+
+    @DeleteMapping
+    @ApiOperation("delete a batch of dish")
+    public Result delete(@RequestParam List<Long> ids){
+        log.info("delete a batch of dish：{}",ids);
+        dishService.deleteBatch(ids);
+        return Result.success();
+    }
 }
