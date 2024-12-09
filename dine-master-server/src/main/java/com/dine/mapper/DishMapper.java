@@ -6,9 +6,12 @@ import com.dine.entity.Dish;
 import com.dine.enumeration.OperationType;
 import com.dine.vo.DishVO;
 import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface DishMapper {
@@ -29,4 +32,19 @@ public interface DishMapper {
      * @return
      */
     Page<DishVO> pageQuery(DishPageQueryDTO dishPageQueryDTO);
+
+    /**
+     * get dish by id
+     * @param id
+     * @return
+     */
+    @Select("SELECT * FROM dish WHERE id = #{id}")
+    Dish getDishById(Long id);
+
+    /**
+     * delete a dish
+     * @param id
+     */
+    @Delete("DELETE FROM dish WHERE id = #{id}")
+    void deleteById(Long id);
 }
