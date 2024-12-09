@@ -94,12 +94,19 @@ public class DishServiceImpl implements DishService {
     }
 
     /**
-     * enable or disable dish
-     * @param status
+     * get dish by id
      * @param id
+     * @return
      */
-    public void enableOrDisable(Integer status, Long id) {
-
+    public DishVO getDishById(Long id) {
+        //search dish by id
+        Dish dish = dishMapper.getDishById(id);
+        //search flavor by dish id
+        List<DishFlavor> dishFlavors = dishFlavorMapper.getFlavorByDishId(id);
+        //encapsulate into a dishVO
+        DishVO dishVO = new DishVO();
+        BeanUtils.copyProperties(dish, dishVO);
+        dishVO.setFlavors(dishFlavors);
+        return dishVO;
     }
-
 }

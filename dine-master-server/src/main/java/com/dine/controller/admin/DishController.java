@@ -4,6 +4,7 @@ import com.dine.dto.DishDTO;
 import com.dine.dto.DishPageQueryDTO;
 import com.dine.result.PageResult;
 import com.dine.service.DishService;
+import com.dine.vo.DishVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -48,5 +49,13 @@ public class DishController {
         log.info("delete a batch of dish：{}",ids);
         dishService.deleteBatch(ids);
         return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation("get dish by id")
+    public Result<DishVO> getDishById(@PathVariable Long id) {
+        log.info("get dish by id: {}", id);
+        DishVO dishVO = dishService.getDishById(id);
+        return Result.success(dishVO);
     }
 }

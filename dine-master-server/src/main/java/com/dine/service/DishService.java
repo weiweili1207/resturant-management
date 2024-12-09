@@ -3,6 +3,7 @@ package com.dine.service;
 import com.dine.dto.DishDTO;
 import com.dine.dto.DishPageQueryDTO;
 import com.dine.result.PageResult;
+import com.dine.vo.DishVO;
 
 import java.util.List;
 
@@ -27,9 +28,9 @@ public interface DishService {
     void deleteBatch(List<Long> ids);
 
     /**
-     * enable or disable dish
-     * @param status
+     * search dish by id
      * @param id
+     * @return
      */
-    void enableOrDisable(Integer status, Long id);
+    DishVO getDishById(Long id);
 }
