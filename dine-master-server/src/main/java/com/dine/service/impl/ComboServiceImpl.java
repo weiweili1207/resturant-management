@@ -1,11 +1,16 @@
 package com.dine.service.impl;
 
 import com.dine.dto.ComboDTO;
+import com.dine.dto.ComboPageQueryDTO;
 import com.dine.entity.Combo;
 import com.dine.entity.ComboDish;
 import com.dine.mapper.ComboDishMapper;
 import com.dine.mapper.ComboMapper;
+import com.dine.result.PageResult;
 import com.dine.service.ComboService;
+import com.dine.vo.ComboVO;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +40,16 @@ public class ComboServiceImpl implements ComboService {
             comboDishes.forEach(comboDish -> {comboDish.setComboId(comboId);});
             comboDishMapper.insertBatch(comboDishes);
         }
+    }
+
+    /**
+     * combo pagination
+     * @param comboPageQueryDTO
+     * @return
+     */
+    public PageResult pageQuery(ComboPageQueryDTO comboPageQueryDTO) {
+        PageHelper.startPage(comboPageQueryDTO.getPage(), comboPageQueryDTO.getPageSize());
+        Page<ComboVO> page = comboMapper.pageQuery(comboPageQueryDTO);
+        return new PageResult(page.getTotal(), page.getResult());
     }
 }

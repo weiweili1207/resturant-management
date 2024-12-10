@@ -1,8 +1,11 @@
 package com.dine.mapper;
 
 import com.dine.annotation.AutoFill;
+import com.dine.dto.ComboPageQueryDTO;
 import com.dine.entity.Combo;
 import com.dine.enumeration.OperationType;
+import com.dine.vo.ComboVO;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -18,4 +21,11 @@ public interface ComboMapper {
      */
     @AutoFill(value = OperationType.INSERT)
     void insert(Combo combo);
+
+    /**
+     * combo pagination
+     * @param comboPageQueryDTO
+     * @return
+     */
+    Page<ComboVO> pageQuery(ComboPageQueryDTO comboPageQueryDTO);
 }
