@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class SetmealPageQueryDTO implements Serializable {
+public class ComboPageQueryDTO implements Serializable {
 
     private int page;
 
@@ -13,10 +13,10 @@ public class SetmealPageQueryDTO implements Serializable {
 
     private String name;
 
-    //分类id
+    //category id
     private Integer categoryId;
 
-    //状态 0表示禁用 1表示启用
+    //status 0 disable 1 enable
     private Integer status;
 
 }

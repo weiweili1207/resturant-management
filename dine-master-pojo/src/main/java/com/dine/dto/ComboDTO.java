@@ -1,6 +1,6 @@
 package com.dine.dto;
 
-import com.dine.entity.SetmealDish;
+import com.dine.entity.ComboDish;
 import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -8,29 +8,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class SetmealDTO implements Serializable {
+public class ComboDTO implements Serializable {
 
     private Long id;
 
-    //分类id
+    //category id
     private Long categoryId;
 
-    //套餐名称
+    //combo name
     private String name;
 
-    //套餐价格
+    //combo price
     private BigDecimal price;
 
-    //状态 0:停用 1:启用
+    //status 0:disable 1:enable
     private Integer status;
 
-    //描述信息
+    //description
     private String description;
 
-    //图片
+    //image
     private String image;
 
-    //套餐菜品关系
-    private List<SetmealDish> setmealDishes = new ArrayList<>();
+    //combo and dish relation
+    private List<ComboDish> comboDishes = new ArrayList<>();
 
 }

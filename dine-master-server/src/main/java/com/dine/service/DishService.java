@@ -2,6 +2,7 @@ package com.dine.service;
 
 import com.dine.dto.DishDTO;
 import com.dine.dto.DishPageQueryDTO;
+import com.dine.entity.Dish;
 import com.dine.result.PageResult;
 import com.dine.vo.DishVO;
 
@@ -39,4 +40,11 @@ public interface DishService {
      * @param dishDTO
      */
     void updateWithFlavor(DishDTO dishDTO);
+
+    /**
+     * get a list of dishes by category id
+     * @param categoryId
+     * @return
+     */
+    List<Dish> list(Long categoryId);
 }

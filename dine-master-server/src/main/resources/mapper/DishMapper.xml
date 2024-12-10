@@ -11,28 +11,28 @@
         UPDATE sky_take_out.dish
         <set>
             <if test="name != null">
-                name = #{name}
+                name = #{name},
             </if>
             <if test="categoryId != null">
-                category_id = #{categoryId}
+                category_id = #{categoryId},
             </if>
             <if test="price != null">
-                price = #{price}
+                price = #{price},
             </if>
             <if test="image != null">
-                image = #{image}
+                image = #{image},
             </if>
             <if test="description != null">
-                description = #{description}
+                description = #{description},
             </if>
             <if test="status != null">
-                status = #{status}
+                status = #{status},
             </if>
             <if test="updateTime != null">
-                update_time = #{updateTime}
+                update_time = #{updateTime},
             </if>
             <if test="updateUser != null">
-                update_user = #{updateUser}
+                update_user = #{updateUser},
             </if>
         </set>
         WHERE id = #{id}
@@ -51,5 +51,20 @@
             </if>
         </where>
         ORDER BY d.create_time DESC
+    </select>
+    <select id="list" resultType="com.dine.entity.Dish" parameterType="com.dine.entity.Dish">
+        SELECT * FROM sky_take_out.dish
+        <where>
+            <if test="name != null">
+                AND name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="categoryId != null">
+                AND category_id = #{categoryId}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+        ORDER BY create_time DESC
     </select>
 </mapper>

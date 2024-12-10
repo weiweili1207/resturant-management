@@ -2,16 +2,18 @@ package com.dine.controller.admin;
 
 import com.dine.dto.DishDTO;
 import com.dine.dto.DishPageQueryDTO;
+import com.dine.entity.Dish;
 import com.dine.result.PageResult;
 import com.dine.service.DishService;
 import com.dine.vo.DishVO;
-import com.wechat.pay.contrib.apache.httpclient.util.RsaCryptoUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import com.dine.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.OverridesAttribute;
 import java.util.List;
 /**
  * dish management
@@ -66,5 +68,13 @@ public class DishController {
         log.info("Starting to update dish: {}", dishDTO);
         dishService.updateWithFlavor(dishDTO);
         return Result.success();
+    }
+
+    @GetMapping("/list")
+    @ApiOperation("get dish by category id")
+    public Result<List<Dish>> list(Long categoryId) {
+        log.info("get dish by category id: {}", categoryId);
+        List<Dish> dishList = dishService.list(categoryId);
+        return Result.success(dishList);
     }
 }
