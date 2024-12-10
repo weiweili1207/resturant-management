@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Configuration
-@RequestMapping("/admin/combo")
+@RequestMapping("/admin/setmeal")
 @Slf4j
 @Api("Combo-related API")
 public class ComboController {
@@ -29,4 +29,5 @@ public class ComboController {
         comboService.addCombo(comboDTO);
         return Result.success();
     }
+    
 }

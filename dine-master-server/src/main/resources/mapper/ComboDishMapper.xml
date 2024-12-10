@@ -2,6 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dine.mapper.ComboDishMapper">
+    <insert id="insertBatch" parameterType="list">
+        INSERT INTO sky_take_out.set_meal_dish (set_meal_id, dish_id, name, price, copies) VALUES
+        <foreach collection="comboDishes" item="cd" separator=",">
+            (#{cd.comboId},#{cd.dishId},#{cd.name},#{cd.price},#{cd.copies})
+        </foreach>
+    </insert>
     <select id="getComboIdByDishId" resultType="java.lang.Long">
         SELECT set_meal_id FROM sky_take_out.set_meal_dish WHERE dish_id IN
         <foreach collection="dishIds" item="dishId" separator="," open="(" close=")">
