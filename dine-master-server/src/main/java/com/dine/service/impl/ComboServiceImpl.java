@@ -1,9 +1,12 @@
 package com.dine.service.impl;
 
+import com.dine.constant.MessageConstant;
+import com.dine.constant.StatusConstant;
 import com.dine.dto.ComboDTO;
 import com.dine.dto.ComboPageQueryDTO;
 import com.dine.entity.Combo;
 import com.dine.entity.ComboDish;
+import com.dine.exception.DeletionNotAllowedException;
 import com.dine.mapper.ComboDishMapper;
 import com.dine.mapper.ComboMapper;
 import com.dine.result.PageResult;
@@ -51,5 +54,26 @@ public class ComboServiceImpl implements ComboService {
         PageHelper.startPage(comboPageQueryDTO.getPage(), comboPageQueryDTO.getPageSize());
         Page<ComboVO> page = comboMapper.pageQuery(comboPageQueryDTO);
         return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    /**
+     * delete combo
+     * @param ids
+     */
+    public void delete(List<Long> ids) {
+        //can we delete current combo? if it's status is enabled we can't
+        ids.forEach(id -> {
+            Combo combo = comboMapper.getComboById(id);
+            if (combo.getStatus().equals(StatusConstant.ENABLE)) {
+                throw new DeletionNotAllowedException(MessageConstant.COMBO_ON_SALE);
+            }
+        });
+
+        ids.forEach(id -> {
+            //delete combo
+            comboMapper.deleteComboById(id);
+            //delete combo-dish relation
+            comboDishMapper.deleteByComboId(id);
+        });
     }
 }

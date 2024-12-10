@@ -6,6 +6,7 @@ import com.dine.entity.Combo;
 import com.dine.enumeration.OperationType;
 import com.dine.vo.ComboVO;
 import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -28,4 +29,19 @@ public interface ComboMapper {
      * @return
      */
     Page<ComboVO> pageQuery(ComboPageQueryDTO comboPageQueryDTO);
+
+    /**
+     * get combo by id
+     * @param id
+     * @return
+     */
+    @Select("SELECT * FROM set_meal WHERE id = #{id}")
+    Combo getComboById(Long id);
+
+    /**
+     * delete combo by id
+     * @param id
+     */
+    @Delete("DELETE FROM set_meal WHERE id = #{id}")
+    void deleteComboById(Long id);
 }

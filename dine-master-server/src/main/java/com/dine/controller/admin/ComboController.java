@@ -8,11 +8,10 @@ import com.dine.service.ComboService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.util.PackageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 @RestController
 @Configuration
 @RequestMapping("/admin/setmeal")
@@ -36,5 +35,13 @@ public class ComboController {
         log.info("Starting to pagination for combo: {}", comboPageQueryDTO);
         PageResult page = comboService.pageQuery(comboPageQueryDTO);
         return Result.success(page);
+    }
+
+    @DeleteMapping
+    @ApiOperation("delete combo")
+    public Result delete(@RequestParam List<Long> ids) {
+        log.info("Starting to delete combo id: {}", ids);
+        comboService.delete(ids);
+        return Result.success();
     }
 }

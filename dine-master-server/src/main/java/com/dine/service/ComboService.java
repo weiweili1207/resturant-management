@@ -4,6 +4,8 @@ import com.dine.dto.ComboDTO;
 import com.dine.dto.ComboPageQueryDTO;
 import com.dine.result.PageResult;
 
+import java.util.List;
+
 public interface ComboService {
     /**
      * add new combo
@@ -17,4 +19,10 @@ public interface ComboService {
      * @return
      */
     PageResult pageQuery(ComboPageQueryDTO comboPageQueryDTO);
+
+    /**
+     * delete combo
+     * @param ids
+     */
+    void delete(List<Long> ids);
 }

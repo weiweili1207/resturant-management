@@ -1,6 +1,7 @@
 package com.dine.mapper;
 
 import com.dine.entity.ComboDish;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -22,4 +23,11 @@ public interface ComboDishMapper {
      * @param comboDishes
      */
     void insertBatch(List<ComboDish> comboDishes);
+
+    /**
+     * delete combo-dish relation
+     * @param comboId
+     */
+    @Delete("DELETE FROM set_meal_dish WHERE set_meal_id = #{comboId}")
+    void deleteByComboId(Long comboId);
 }

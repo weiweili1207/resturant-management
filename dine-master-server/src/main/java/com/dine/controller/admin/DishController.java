@@ -13,7 +13,6 @@ import com.dine.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.OverridesAttribute;
 import java.util.List;
 /**
  * dish management
