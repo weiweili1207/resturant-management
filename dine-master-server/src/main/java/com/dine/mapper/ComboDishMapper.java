@@ -30,4 +30,12 @@ public interface ComboDishMapper {
      */
     @Delete("DELETE FROM set_meal_dish WHERE set_meal_id = #{comboId}")
     void deleteByComboId(Long comboId);
+
+    /**
+     * get combo and dish relationship by combo id
+     * @param comboId
+     * @return
+     */
+    @Select("SELECT * FROM set_meal_dish WHERE set_meal_id= #{comboId}")
+    List<ComboDish> getByComboId(Long comboId);
 }

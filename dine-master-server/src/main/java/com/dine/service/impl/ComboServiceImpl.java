@@ -60,6 +60,7 @@ public class ComboServiceImpl implements ComboService {
      * delete combo
      * @param ids
      */
+    @Transactional
     public void delete(List<Long> ids) {
         //can we delete current combo? if it's status is enabled we can't
         ids.forEach(id -> {
@@ -75,5 +76,22 @@ public class ComboServiceImpl implements ComboService {
             //delete combo-dish relation
             comboDishMapper.deleteByComboId(id);
         });
+    }
+
+    /**
+     * get combo by id
+     * @param id
+     * @return
+     */
+    public ComboVO getComboById(Long id) {
+        //search combo by id
+        Combo combo = comboMapper.getComboById(id);
+        //get combo and dish relation
+        List<ComboDish> comboDishes = comboDishMapper.getByComboId(id);
+        //encapsulate into a vo
+        ComboVO comboVO = new ComboVO();
+        BeanUtils.copyProperties(combo, comboVO);
+        comboVO.setComboDishes(comboDishes);
+        return comboVO;
     }
 }

@@ -5,6 +5,7 @@ import com.dine.dto.ComboPageQueryDTO;
 import com.dine.result.PageResult;
 import com.dine.result.Result;
 import com.dine.service.ComboService;
+import com.dine.vo.ComboVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public class ComboController {
         return Result.success();
     }
 
-    @GetMapping("page")
+    @GetMapping("/page")
     @ApiOperation("combo pagination")
     public Result<PageResult> page(ComboPageQueryDTO comboPageQueryDTO) {
         log.info("Starting to pagination for combo: {}", comboPageQueryDTO);
@@ -43,5 +44,12 @@ public class ComboController {
         log.info("Starting to delete combo id: {}", ids);
         comboService.delete(ids);
         return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation("get combo by id")
+    public Result<ComboVO> getComboById(@PathVariable Long id) {
+        ComboVO comboVO = comboService.getComboById(id);
+        return Result.success(comboVO);
     }
 }

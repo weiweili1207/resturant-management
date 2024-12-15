@@ -3,6 +3,7 @@ package com.dine.service;
 import com.dine.dto.ComboDTO;
 import com.dine.dto.ComboPageQueryDTO;
 import com.dine.result.PageResult;
+import com.dine.vo.ComboVO;
 
 import java.util.List;
 
@@ -25,4 +26,11 @@ public interface ComboService {
      * @param ids
      */
     void delete(List<Long> ids);
+
+    /**
+     * get combo by id
+     * @param id
+     * @return
+     */
+    ComboVO getComboById(Long id);
 }
