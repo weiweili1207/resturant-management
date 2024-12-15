@@ -59,4 +59,11 @@ public class ComboController {
         comboService.updateCombo(comboDTO);
         return Result.success();
     }
+
+    @PostMapping("/status/{status}")
+    @ApiOperation("enable or disable combo")
+    public Result EnableOrDisable(@PathVariable Integer status, Long id) {
+        comboService.enableOrDisable(status, id);
+        return Result.success();
+    }
 }

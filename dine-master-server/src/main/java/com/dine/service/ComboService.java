@@ -39,4 +39,11 @@ public interface ComboService {
      * @param comboDTO
      */
     void updateCombo(ComboDTO comboDTO);
+
+    /**
+     * enable or disable combo
+     * @param status
+     * @param id
+     */
+    void enableOrDisable(Integer status, Long id);
 }

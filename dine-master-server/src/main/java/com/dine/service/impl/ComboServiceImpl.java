@@ -114,4 +114,17 @@ public class ComboServiceImpl implements ComboService {
             comboDishMapper.insertBatch(comboDishes);
         }
     }
+
+    /**
+     * enable or disable combo
+     * @param status
+     * @param id
+     */
+    public void enableOrDisable(Integer status, Long id) {
+        Combo combo = Combo.builder()
+                .status(status)
+                .id(id)
+                .build();
+        comboMapper.update(combo);
+    }
 }
