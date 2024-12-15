@@ -52,4 +52,11 @@ public class ComboController {
         ComboVO comboVO = comboService.getComboById(id);
         return Result.success(comboVO);
     }
+
+    @PutMapping
+    @ApiOperation("update combo")
+    public Result update(@RequestBody ComboDTO comboDTO) {
+        comboService.updateCombo(comboDTO);
+        return Result.success();
+    }
 }

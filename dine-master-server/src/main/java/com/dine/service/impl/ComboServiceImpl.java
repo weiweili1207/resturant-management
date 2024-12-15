@@ -94,4 +94,24 @@ public class ComboServiceImpl implements ComboService {
         comboVO.setComboDishes(comboDishes);
         return comboVO;
     }
+
+    /**
+     * update combo
+     * @param comboDTO
+     */
+    public void updateCombo(ComboDTO comboDTO) {
+        //encapsulate the comboDTO as a Combo
+        Combo combo = new Combo();
+        BeanUtils.copyProperties(comboDTO, combo);
+        comboMapper.update(combo);
+        //delete combo and dish relationship
+        Long comboId = comboDTO.getId();
+        comboDishMapper.deleteByComboId(comboId);
+        List<ComboDish> comboDishes = comboDTO.getComboDishes();
+        if (comboDishes != null && comboDishes.size() > 0) {
+            comboDishes.forEach(comboDish -> {comboDish.setComboId(comboId);});
+            //insert the new combo & dish relationship
+            comboDishMapper.insertBatch(comboDishes);
+        }
+    }
 }

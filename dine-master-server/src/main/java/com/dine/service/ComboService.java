@@ -33,4 +33,10 @@ public interface ComboService {
      * @return
      */
     ComboVO getComboById(Long id);
+
+    /**
+     * update combo
+     * @param comboDTO
+     */
+    void updateCombo(ComboDTO comboDTO);
 }

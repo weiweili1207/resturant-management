@@ -44,4 +44,11 @@ public interface ComboMapper {
      */
     @Delete("DELETE FROM set_meal WHERE id = #{id}")
     void deleteComboById(Long id);
+
+    /**
+     * update combo
+     * @param combo
+     */
+    @AutoFill(value = OperationType.UPDATE)
+    void update(Combo combo);
 }
