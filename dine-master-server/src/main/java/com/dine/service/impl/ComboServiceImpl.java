@@ -6,9 +6,12 @@ import com.dine.dto.ComboDTO;
 import com.dine.dto.ComboPageQueryDTO;
 import com.dine.entity.Combo;
 import com.dine.entity.ComboDish;
+import com.dine.entity.Dish;
 import com.dine.exception.DeletionNotAllowedException;
+import com.dine.exception.SetmealEnableFailedException;
 import com.dine.mapper.ComboDishMapper;
 import com.dine.mapper.ComboMapper;
+import com.dine.mapper.DishMapper;
 import com.dine.result.PageResult;
 import com.dine.service.ComboService;
 import com.dine.vo.ComboVO;
@@ -25,6 +28,8 @@ public class ComboServiceImpl implements ComboService {
     private ComboMapper comboMapper;
     @Autowired
     private ComboDishMapper comboDishMapper;
+    @Autowired
+    private DishMapper dishMapper;
     /**
      * add a new combo and also need to keep combo and dish relationship
      * @param comboDTO
@@ -121,6 +126,16 @@ public class ComboServiceImpl implements ComboService {
      * @param id
      */
     public void enableOrDisable(Integer status, Long id) {
+        //if there exists any disable dish in the combo is disabled we can't enable the combo
+        if (status.equals(StatusConstant.ENABLE)) {
+            //get the list of dishes by combo id
+            List<Dish> dishList = dishMapper.getDishByComboId(id);
+            dishList.forEach(dish -> {
+                if (dish.getStatus().equals(StatusConstant.DISABLE)) {
+                    throw new SetmealEnableFailedException(MessageConstant.COMBO_ENABLE_FAILED);
+                }
+            });
+        }
         Combo combo = Combo.builder()
                 .status(status)
                 .id(id)

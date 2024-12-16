@@ -60,4 +60,12 @@ public interface DishMapper {
      * @return
      */
     List<Dish> list(Dish dish);
+
+    /**
+     * get dish list by combo id
+     * @param comboId
+     * @return
+     */
+    @Select("SELECT d.* FROM dish d LEFT JOIN set_meal_dish s ON d.id = s.dish_id WHERE s.set_meal_id = ${comboId}")
+    List<Dish> getDishByComboId(Long comboId);
 }
